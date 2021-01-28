@@ -2,16 +2,16 @@ package com.chenhs.MySpringBoot;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.chenhs.MySpringBoot.mysqlDemo.Entity.RR;
 import com.chenhs.MySpringBoot.mysqlDemo.service.MysqlService;
-import com.chenhs.MySpringBoot.quartzDemo.Task;
 
 //@SpringBootApplication
 //public class MySpringBootApplication {
@@ -22,13 +22,10 @@ import com.chenhs.MySpringBoot.quartzDemo.Task;
 //
 //}
 @ComponentScan(basePackages = { "com.chenhs.MySpringBoot*" })
-@EnableScheduling
 @SpringBootApplication
 public class MySpringBootApplication implements CommandLineRunner {
 	@Autowired
 	private MysqlService ss;
-	@Autowired
-	private Task task;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MySpringBootApplication.class, args);
@@ -36,9 +33,10 @@ public class MySpringBootApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Logger logger = LoggerFactory.getLogger(this.getClass());
 		List<RR> selectAll = ss.getAllFromZZ();
 		for (RR r : selectAll) {
-			System.out.println(r.getId() + " " + r.getPath() + " " + r.getFilename() + " " + r.getDatetime());
+			logger.warn(r.getId() + " " + r.getPath() + " " + r.getFilename() + " " + r.getDatetime());
 		}
 		// task.dodo();
 		// RR r = new RR();
