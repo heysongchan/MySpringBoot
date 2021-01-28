@@ -1,0 +1,47 @@
+## 可以通过设置启动参数  --spring.profiles.active=bb,cc
+spring:
+  profiles:
+    active:
+    - aa
+
+######### log   ########################
+logging:
+  level:
+    root: INFO
+  config: classpath:logback-spring.xml
+
+
+
+---
+########### mysql  #######################
+spring:
+  profiles: aa
+  datasource:
+    url: jdbc:mysql://10.1.30.8:3306/bim_gis?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+## mybatis
+mybatis:
+  mapperLocations: classpath:mysqlmapper/*.xml
+
+  
+  
+---
+## sqlite
+spring:
+  profiles: bb
+  datasource:
+    url: jdbc:sqlite:sqlitedb/z.db
+    driverClassName: org.sqlite.JDBC
+## mybatis
+mybatis:
+  mapperLocations: classpath:mysqlmapper/*.xml
+  
+  
+---
+######### log   ########################
+spring:
+  profiles: cc
+logging:
+  level:
+    root: ERROR
