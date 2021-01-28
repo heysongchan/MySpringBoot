@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chenhs.MySpringBoot.mysqlDemo.Mapper.RRMapper">
+  <select id="selectAll" resultType="com.chenhs.MySpringBoot.mysqlDemo.Entity.RR">  
+       select id,filename,path,format,size,datetime from fileinfos 
+  </select>
+  
+  <select id="selectAllFromZZ" resultType="com.chenhs.MySpringBoot.mysqlDemo.Entity.RR">  
+       select id,name as filename,datetime from zz
+  </select>
+  
+  <insert id="insertIntoZZ" parameterType="com.chenhs.MySpringBoot.mysqlDemo.Entity.RR">
+       insert into zz (id,name,datetime) values (#{id},#{filename},#{datetime})
+  </insert>
+</mapper> 
