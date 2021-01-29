@@ -2,7 +2,10 @@
 spring:
   profiles:
     active:
-    - aa
+    - mysql
+    - rabbit
+
+
 
 ######### log   ########################
 logging:
@@ -12,10 +15,29 @@ logging:
 
 
 
+
+
+---
+######### rabbitmq   ########################
+spring:
+  profiles: rabbit
+  rabbitmq:   
+    host: 10.1.33.154
+    port: 5672
+    virtual-host: /
+    username: admin
+    password: 123456
+    template:
+      exchange: z
+      routing-key: myRoutingkey
+
+
+
+
 ---
 ########### mysql  #######################
 spring:
-  profiles: aa
+  profiles: mysql
   datasource:
     url: jdbc:mysql://10.1.30.8:3306/bim_gis?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
@@ -24,24 +46,29 @@ spring:
 mybatis:
   mapperLocations: classpath:mysqlmapper/*.xml
 
-  
-  
+
+
+
+
 ---
-## sqlite
+######### sqlite #################
 spring:
-  profiles: bb
+  profiles: sqlite
   datasource:
     url: jdbc:sqlite:sqlitedb/z.db
     driverClassName: org.sqlite.JDBC
 ## mybatis
 mybatis:
-  mapperLocations: classpath:mysqlmapper/*.xml
-  
+  mapperLocations: classpath:mapper/*.xml
+
+
+
+
   
 ---
 ######### log   ########################
 spring:
-  profiles: cc
+  profiles: log
 logging:
   level:
     root: ERROR

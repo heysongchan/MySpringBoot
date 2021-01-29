@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class zController {
-	@GetMapping(value = "/dodo/{str}")
+	@GetMapping(value = "/dodo/{str}", produces = "application/json")
 	public String dodo(@PathVariable String str) {
 		return "cccccccccc: " + str;
 	}
