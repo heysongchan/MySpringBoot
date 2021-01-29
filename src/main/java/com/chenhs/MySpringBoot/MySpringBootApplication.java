@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.chenhs.MySpringBoot.AOP.service.myService;
 import com.chenhs.MySpringBoot.mysqlDemo.Entity.RR;
 import com.chenhs.MySpringBoot.mysqlDemo.service.MysqlService;
 
@@ -25,7 +26,9 @@ import com.chenhs.MySpringBoot.mysqlDemo.service.MysqlService;
 @SpringBootApplication
 public class MySpringBootApplication implements CommandLineRunner {
 	@Autowired
-	private MysqlService ss;
+	private MysqlService mysqlService;
+	@Autowired
+	private myService myservice;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MySpringBootApplication.class, args);
@@ -34,7 +37,7 @@ public class MySpringBootApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Logger logger = LoggerFactory.getLogger(this.getClass());
-		List<RR> selectAll = ss.getAllFromZZ();
+		List<RR> selectAll = mysqlService.getAllFromZZ();
 		for (RR r : selectAll) {
 			logger.warn(r.getId() + " " + r.getPath() + " " + r.getFilename() + " " + r.getDatetime());
 		}
@@ -44,6 +47,7 @@ public class MySpringBootApplication implements CommandLineRunner {
 		// r.setFilename("aaaaaaa");
 		// r.setDatetime(new Date());
 		// ss.insertIntoZZ(r);
+		myservice.dodo();
 	}
 
 }
