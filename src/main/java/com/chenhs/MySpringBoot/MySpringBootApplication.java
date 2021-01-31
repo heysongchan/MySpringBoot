@@ -33,7 +33,8 @@ public class MySpringBootApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		rabbitTest();
+		// rabbitTest();
+		dodo();
 	}
 
 	private void dodo() {
