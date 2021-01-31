@@ -2,6 +2,7 @@ package com.chenhs.MySpringBoot.RabbitMQDemo.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,13 @@ public class RabbitMQService {
 
 	public void receive() {
 		Logger logger = LoggerFactory.getLogger(this.getClass());
-		Object obj = rt.receiveAndConvert("zz");
-		logger.error(obj.toString());
+		// Object obj = rt.receiveAndConvert("zz");
+		Message msg = rt.receive("zz");
+		Object obj = rt.getMessageConverter().fromMessage(msg);
+		logger.error("after receive zzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+		if (obj != null) {
+			logger.error(obj.toString());
+		}
 
 	}
 }

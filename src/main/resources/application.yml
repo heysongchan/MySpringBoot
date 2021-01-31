@@ -2,8 +2,8 @@
 spring:
   profiles:
     active:
-    - mysql
     - rabbit
+    - sqlite
 
 
 
@@ -22,14 +22,15 @@ logging:
 spring:
   profiles: rabbit
   rabbitmq:   
-    host: 10.1.33.154
+    host: 192.168.0.103
     port: 5672
     virtual-host: /
     username: admin
     password: 123456
     template:
-      exchange: z
-      routing-key: myRoutingkey
+      exchange: amq.fanout
+      receive-timeout: -1
+      #routing-key: myRoutingkey      
 
 
 
