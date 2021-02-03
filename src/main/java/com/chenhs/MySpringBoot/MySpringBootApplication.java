@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.chenhs.MySpringBoot.AOP.service.myService;
+import com.chenhs.MySpringBoot.Email.EmailService;
 import com.chenhs.MySpringBoot.RabbitMQDemo.Service.RabbitMQService;
 
 //@SpringBootApplication
@@ -26,6 +27,8 @@ public class MySpringBootApplication implements CommandLineRunner {
 	private myService myservice;
 	@Autowired
 	private RabbitMQService rs;
+	@Autowired
+	private EmailService es;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MySpringBootApplication.class, args);
@@ -34,7 +37,8 @@ public class MySpringBootApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// rabbitTest();
-		dodo();
+		// dodo();
+		mail();
 	}
 
 	private void dodo() {
@@ -58,6 +62,10 @@ public class MySpringBootApplication implements CommandLineRunner {
 //			rs.receive();
 //		}
 
+	}
+
+	private void mail() {
+		es.send();
 	}
 
 }

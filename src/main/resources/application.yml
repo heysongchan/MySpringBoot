@@ -2,8 +2,9 @@
 spring:
   profiles:
     active:
-    - rabbit
     - sqlite
+    - email
+    - log
 
 
 
@@ -16,6 +17,27 @@ logging:
 ######### quartz   ########################
 jobs: 
   fixedDelay: 500
+
+
+######### email   ########################
+---
+spring:
+  profiles: email
+  mail:
+    #host: pop.qq.com
+    host: smtp.qq.com
+    username: 617950737@qq.com
+    password: rnpvhoraigpzbcdf
+    default-encoding: UTF-8
+    properties: 
+      mail: 
+        #pop: 
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 
 
 ---
