@@ -96,8 +96,6 @@ mybatis:
   mapperLocations: classpath:mapper/*.xml
 
 
-
-
   
 ---
 ######### log   ########################
@@ -108,3 +106,20 @@ spring:
 logging:
   level:
     root: ERROR
+
+
+
+---
+######### feign   ########################
+spring:
+  config:
+    activate:
+      on-profile: feign
+feign:
+  client:
+    config:
+      cloud01-application:
+        connectionTime: 1000  #连接超时
+        readTimeout: 1000 #读取超时
+        #requestInterceptors:
+          #- com.zzz.

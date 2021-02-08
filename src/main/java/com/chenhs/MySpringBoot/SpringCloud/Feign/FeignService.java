@@ -1,4 +1,4 @@
-package com.chenhs.MySpringBoot.Consul.Feign;
+package com.chenhs.MySpringBoot.SpringCloud.Feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

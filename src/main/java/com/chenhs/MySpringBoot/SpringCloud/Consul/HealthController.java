@@ -1,4 +1,4 @@
-package com.chenhs.MySpringBoot.Consul.Controller;
+package com.chenhs.MySpringBoot.SpringCloud.Consul;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
