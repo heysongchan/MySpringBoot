@@ -1,10 +1,14 @@
+server:
+  port: 8081
+
 ## 可以通过设置启动参数  --spring.profiles.active=bb,cc
 spring:
   profiles:
     active:
     - sqlite
     - email
-    - log
+    - consul
+    - rabbit
 
 
 
@@ -18,11 +22,30 @@ logging:
 jobs: 
   fixedDelay: 500
 
-
+######### consul   ########################
+---
+spring:
+  config:
+    activate:
+      on-profile: consul
+  cloud:
+    consul:
+      host: 192.168.0.103
+      port: 8500
+      discovery:
+        healthCheckPath: /health
+        healthCheckInterval: 10s
+        instance-id: cloud01-id
+        hostname: 192.168.0.102
+  application:
+    name: cloud01-application
+  
 ######### email   ########################
 ---
 spring:
-  profiles: email
+  config:
+    activate:
+      on-profile: email
   mail:
     #host: pop.qq.com
     host: smtp.qq.com
@@ -43,7 +66,9 @@ spring:
 ---
 ######### rabbitmq   ########################
 spring:
-  profiles: rabbit
+  config:
+    activate:
+      on-profile: rabbit
   rabbitmq:   
     host: 192.168.0.103
     port: 5672
@@ -61,7 +86,9 @@ spring:
 ---
 ########### mysql  #######################
 spring:
-  profiles: mysql
+  config:
+    activate:
+      on-profile: mysql
   datasource:
     url: jdbc:mysql://10.1.30.8:3306/bim_gis?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
@@ -77,7 +104,9 @@ mybatis:
 ---
 ######### sqlite #################
 spring:
-  profiles: sqlite
+  config:
+    activate:
+      on-profile: sqlite
   datasource:
     url: jdbc:sqlite:sqlitedb/z.db
     driverClassName: org.sqlite.JDBC
@@ -92,7 +121,9 @@ mybatis:
 ---
 ######### log   ########################
 spring:
-  profiles: log
+  config:
+    activate:
+      on-profile: log
 logging:
   level:
     root: ERROR
