@@ -7,7 +7,6 @@ spring:
     active:
     - sqlite
     - email
-    - consul
     - rabbit
 
 
@@ -20,26 +19,8 @@ logging:
 
 ######### quartz   ########################
 jobs: 
-  fixedDelay: 500
+  fixedDelay: 1500
 
-######### consul   ########################
----
-spring:
-  config:
-    activate:
-      on-profile: consul
-  cloud:
-    consul:
-      host: 192.168.0.103
-      port: 8500
-      discovery:
-        healthCheckPath: /health
-        healthCheckInterval: 10s
-        instance-id: cloud01-id
-        hostname: 192.168.0.102
-  application:
-    name: cloud01-application
-  
 ######### email   ########################
 ---
 spring:
