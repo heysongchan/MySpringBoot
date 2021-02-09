@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 @RestController
 public class zController {
 	private Logger log;
@@ -18,13 +20,26 @@ public class zController {
 		log = LoggerFactory.getLogger(this.getClass());
 	}
 
+	@HystrixCommand(fallbackMethod = "fallbackmethod")
 	@GetMapping(value = "/dodo/{str}", produces = "application/json")
 	public String dodo(@PathVariable String str) {
+		int i = 1 / 0;
 		return "cccccccccc: " + str;
+	}
+
+	public String fallbackmethod(String str) {
+		return "fallbackmethod: " + str;
 	}
 
 	@GetMapping(value = "/dodo1", produces = "application/json")
 	public String dodo1(@RequestParam("a") String str) {
+		try {
+			log.error("before   " + str);
+			Thread.sleep(1000);
+			log.error(str);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return "cccccccccc: " + str;
 	}
 

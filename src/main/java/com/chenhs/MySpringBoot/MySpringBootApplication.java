@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -19,6 +20,7 @@ import com.chenhs.MySpringBoot.RabbitMQDemo.Service.RabbitMQService;
 //	}
 //
 //}
+@EnableCircuitBreaker
 @EnableDiscoveryClient
 @ComponentScan(basePackages = { "com.chenhs.MySpringBoot*" })
 @SpringBootApplication

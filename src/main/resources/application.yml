@@ -116,6 +116,8 @@ spring:
     activate:
       on-profile: feign
 feign:
+  hystrix:
+    enable: true
   client:
     config:
       cloud01-application:
@@ -123,3 +125,21 @@ feign:
         readTimeout: 1000 #读取超时
         #requestInterceptors:
           #- com.zzz.
+---
+######### hystrix   ########################
+spring:
+  config:
+    activate:
+      on-profile: hystrix
+hystrix:
+  command:
+    default:  #可指定CommandKey
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+            interruptOnTimeout: true
+          semaphore:
+            maxConcurrentRequests: 10
