@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.chenhs.MySpringBoot.AOP.service.myService;
 import com.chenhs.MySpringBoot.Email.EmailService;
@@ -20,6 +21,7 @@ import com.chenhs.MySpringBoot.RabbitMQDemo.Service.RabbitMQService;
 //	}
 //
 //}
+@EnableAsync
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @ComponentScan(basePackages = { "com.chenhs.MySpringBoot*" })
